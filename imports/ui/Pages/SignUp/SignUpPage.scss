@@ -1,0 +1,9 @@
+.HeaderStyle {
+    margin-top: 10%;
+}
+
+.logOutStyle {
+    &:hover {
+        cursor: pointer;
+    }
+}
