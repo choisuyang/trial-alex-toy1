@@ -9,11 +9,22 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.7.6",
+    "autoprefixer": "^6.3.1",
     "meteor-node-stubs": "^1.0.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "semantic-ui-css": "^2.4.1",
+    "semantic-ui-icon": "^2.3.3",
     "semantic-ui-react": "^0.88.2"
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {
+        "browsers": [
+          "last 2 versions"
+        ]
+      }
+    }
   },
   "meteor": {
     "mainModule": {
@@ -21,5 +32,9 @@
       "server": "server/main.js"
     },
     "testModule": "tests/main.js"
+  },
+  "devDependencies": {
+    "postcss": "^6.0.22",
+    "postcss-load-config": "^1.2.0"
   }
 }
