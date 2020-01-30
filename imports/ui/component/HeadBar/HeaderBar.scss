@@ -1,0 +1,21 @@
+$fontcolor: black;
+
+.titleContainer {
+    background: $fontcolor;
+    display: flex;
+    justify-content: center;
+}
+
+.titleName {
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.buttonContainer {
+    justify-content: flex-end;
+
+}
