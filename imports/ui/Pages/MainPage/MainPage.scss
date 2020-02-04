@@ -1,0 +1,15 @@
+// .container {
+//     border: 1px solid #eee;
+//     padding: 12px;
+//     border-radius: 8px;
+//     margin: 4px;
+// }
+
+.mainPageContainer {
+    margin: 50px;
+}
+
+.mainPageContainer .firstLine {
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
