@@ -1,3 +1,17 @@
 .font {
   color: 'red';
 }
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+}
+
+// .buttonContainer .buttonContainer {
+
+//   border-radius: 55px;
+//   background: #3c071b;
+//   box-shadow: 32px 32px 49px #2e0515, -32px -32px 49px #4a0921;
+// }
