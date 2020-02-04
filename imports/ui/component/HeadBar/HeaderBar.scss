@@ -1,21 +1,36 @@
-$fontcolor: black;
+$fontcolor: #34ebdb;
 
 .titleContainer {
     background: $fontcolor;
     display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 10vh;
+}
+
+.title {
+    color: #ffffff;
+    font-size: 2rem;
+    font-weight: bold;
+    // text-align: center;
+    align-items: center;
     justify-content: center;
+
 }
 
 .titleName {
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    color: "white";
 
     &:hover {
         cursor: pointer;
     }
 }
 
-.buttonContainer {
+.titleContainer .buttonContainer {
     justify-content: flex-end;
+    align-items: flex-end;
+    // background-color: white;
 
 }
