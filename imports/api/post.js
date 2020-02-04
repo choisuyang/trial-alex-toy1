@@ -39,5 +39,11 @@ Meteor.methods({
       description: String,
       textArea: String,
     });
+
+    if (!this.userId) {
+      throw new Meteor.Error('Edit Post Error');
+    }
+
+    Post.update({});
   },
 });
