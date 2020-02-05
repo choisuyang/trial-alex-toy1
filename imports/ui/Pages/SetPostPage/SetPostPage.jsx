@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Form, Grid, Button, Message, Label } from 'semantic-ui-react';
 import { Meteor } from 'meteor/meteor';
 import { Link } from 'react-router-dom';
-import { Post } from '../../../api/post';
 import { withTracker } from 'meteor/react-meteor-data';
+import { Posts } from '../../../api/posts';
 
-function SetPostPage({ history, post, match }) {
+function SetPostPage({ history, posts, match }) {
   const [text, setText] = useState({
     title: '',
     description: '',
@@ -24,6 +24,10 @@ function SetPostPage({ history, post, match }) {
     });
   };
 
+  const PostItem = Posts.map(item => {
+    return item._id === match.params._id;
+  });
+
   //   console.log(
   //     'SEETTTPOST',
   //     post.map(item => console.log(item.insertValue.title)),
@@ -34,22 +38,22 @@ function SetPostPage({ history, post, match }) {
   const SetPostInsertHandler = e => {
     e.preventDefault();
     console.log('버튼');
-
+    console.log('출력', PostItem);
     const insertValue = {
       title,
       description,
       textArea,
     };
 
-    Meteor.call('post.edit', insertValue, err => {
-      if (err) {
-        console.log('포스트 수정 안됨', err);
-      } else {
-        console.log('포스트가 수정 되었습니다..');
-        alert('포스트가 수정 되었습니다.');
-        history.push('/');
-      }
-    });
+    // Meteor.call('post.edit', , err => {
+    //   if (err) {
+    //     console.log('포스트 수정 안됨', err);
+    //   } else {
+    //     console.log('포스트가 수정 되었습니다..');
+    //     alert('포스트가 수정 되었습니다.');
+    //     history.push('/');
+    //   }
+    // });
   };
 
   const PostButtonValidation =
@@ -58,7 +62,7 @@ function SetPostPage({ history, post, match }) {
   return (
     <Grid>
       <Grid.Row centered>
-        {post.map(
+        {posts.map(
           (item, index) =>
             match.params._id === item._id && (
               <Grid.Column width={10} key={index}>
@@ -122,9 +126,9 @@ function SetPostPage({ history, post, match }) {
 // export default SetPostPage;
 
 export default withTracker(() => {
-  Meteor.subscribe('post');
+  Meteor.subscribe('posts');
   return {
-    post: Post.find({}).fetch(),
+    posts: Posts.find({}).fetch(),
     currentUser: Meteor.user(),
   };
 })(SetPostPage);

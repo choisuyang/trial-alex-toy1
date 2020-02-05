@@ -29,7 +29,7 @@ function PostPage({ history }) {
       textArea,
     };
 
-    Meteor.call('post.insert', insertValue, err => {
+    Meteor.call('posts.insert', insertValue, err => {
       if (err) {
         console.log('포스트 작성안됨', err);
       } else {
