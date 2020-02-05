@@ -62,33 +62,12 @@ function HeaderBar({ currentUser }) {
           </Dropdown.Menu>
         </Dropdown>
       </div>
-
-      {/* ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */}
-      {/* <Grid>
-        <Grid.Row columns={2}>
-          <Grid.Column>
-            <Header as="h1" color="grey" className="titleName">
-              <Link to="/">
-                <label>[Alex] Smart Link</label>
-              </Link>
-            </Header>
-          </Grid.Column>
-          <Grid.Column floated="right" verticalAlign="middle" textAlign="right">
-            <Link to="/signin">
-              <Button>Sign IN</Button>
-            </Link>
-            <Link to="/signup">
-              <Button>Sign Up</Button>
-            </Link>
-          </Grid.Column>
-        </Grid.Row>
-      </Grid> */}
     </div>
   );
 }
 
 export default withTracker(() => {
-  Meteor.subscribe('post');
+  Meteor.subscribe('posts');
   return {
     currentUser: Meteor.user(),
   };
