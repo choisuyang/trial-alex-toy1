@@ -1,20 +1,27 @@
-import { Meteor } from 'meteor/meteor';
-import { check } from 'meteor/check';
+import {
+  Meteor
+} from 'meteor/meteor';
+import {
+  check
+} from 'meteor/check';
 
-export const Post = new Mongo.Collection('post');
+export const Posts = new Mongo.Collection('posts');
 
 if (Meteor.isServer) {
-  Meteor.publish('post', function tasksPublication() {
-    return Post.find({
+  Meteor.publish('posts', function tasksPublication() {
+    return Posts.find({
       // $or: [{
       //     owner: this.userId
       // }, ],
     });
   });
+  Meteor.publish('setpost', function setPostPublication() {
+    return Posts.find({});
+  });
 }
 
 Meteor.methods({
-  'post.insert'(insertValue) {
+  'posts.insert'(insertValue) {
     console.log('포스트 작성', insertValue);
     check(insertValue, {
       title: String,
@@ -22,17 +29,17 @@ Meteor.methods({
       textArea: String,
     });
     if (!this.userId) {
-      throw new Meteor.Error('Post Insert Error');
+      throw new Meteor.Error('Posts Insert Error');
     }
 
-    Post.insert({
+    Posts.insert({
       insertValue,
       createAt: new Date(),
       owner: this.userId,
       username: Meteor.users.findOne(this.userId).username,
     });
   },
-  'post.edit'(insertValue) {
+  'posts.edit'(postId, insertValue) {
     console.log('포스트 수정', insertValue);
     check(insertValue, {
       title: String,
@@ -41,9 +48,13 @@ Meteor.methods({
     });
 
     if (!this.userId) {
-      throw new Meteor.Error('Edit Post Error');
+      throw new Meteor.Error('Edit Posts Error');
     }
 
-    Post.update({});
+    Posts.update(postId, {
+      $set: {
+        insertValue
+      }
+    });
   },
 });
