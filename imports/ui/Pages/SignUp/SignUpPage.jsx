@@ -12,7 +12,7 @@ import {
 } from 'semantic-ui-react';
 import './SignUpPage.scss';
 
-import { isEmail, isValidation } from '../SignUp/Auth.jsx';
+import { isValidation } from '../SignUp/Auth.jsx';
 import { Meteor } from 'meteor/meteor';
 // import { Accounts } from 'meteor/accounts-base';
 
@@ -99,11 +99,11 @@ function SignUpPage({ history }) {
     password.length > 1 &&
     phoneNumber.length > 9;
 
-  console.log('Check button', buttonValidation);
+  // console.log('Check button', buttonValidation);
 
-  console.log('check', email.length);
-  console.log('name', name.length);
-  console.log('sum', email.length && name.length ? 'true' : 'false');
+  // console.log('check', email.length);
+  // console.log('name', name.length);
+  // console.log('sum', email.length && name.length ? 'true' : 'false');
 
   return (
     <Grid centered columns={2}>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Post } from '../../../api/post';
+import { Posts } from '../../../api/posts';
 import { withTracker } from 'meteor/react-meteor-data';
 import './MainPage.scss';
 import UserInfo from '../../component/UserInfo/UserInfo';
@@ -8,9 +8,8 @@ import Chatting from '../../component/Chatting/Chatting';
 import Search from '../../component/Search/Search';
 import { Grid, Image, Card, Icon } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
-import PostItem from '../../component/PostItem/PostItem';
 
-function MainPage({ post, currentUser }) {
+function MainPage({ posts, currentUser }) {
   return (
     <div className="mainPageContainer">
       <Grid divided="vertically">
@@ -27,12 +26,13 @@ function MainPage({ post, currentUser }) {
         </Grid.Row>
 
         <Card.Group itemsPerRow={4}>
-          {post.map(item => {
+          {posts.map(item => {
             const { _id, insertValue } = item;
             return (
               // 페이지 이동해야함
               // _id 값을 props 전달
-              // 페이지에서 pub/sub으로 해당 _id 페이지 불러옴d
+              // 페이지에서 pub/sub으로 해당 _id 페이지 불러옴
+
               <Link to={`/postitem/${_id}`} key={_id}>
                 <Card onClick={() => console.log('클릭한 게시물', _id)}>
                   <Image
@@ -64,9 +64,10 @@ function MainPage({ post, currentUser }) {
 }
 
 export default withTracker(() => {
-  Meteor.subscribe('post');
+  Meteor.subscribe('posts');
   return {
-    post: Post.find({}).fetch(),
+    posts: Posts.find({}).fetch(),
     currentUser: Meteor.user(),
   };
 })(MainPage);
+// NOTE  단수복수

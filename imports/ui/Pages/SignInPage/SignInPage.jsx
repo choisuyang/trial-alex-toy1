@@ -12,8 +12,8 @@ function SignInPage({ history }) {
 
   const onSubmit = e => {
     e.preventDefault();
-    console.log('I am ID', loginId);
-    console.log('I am PWD', password);
+    // console.log('I am ID', loginId);
+    // console.log('I am PWD', password);
 
     Meteor.loginWithPassword(loginId, password, err => {
       if (err) {
