@@ -1,24 +1,32 @@
-import React from 'react';
-import { Meteor } from 'meteor/meteor';
-import { Posts } from '../../../api/posts';
-import { withTracker } from 'meteor/react-meteor-data';
+import React, { useState, useEffect } from 'react';
 import './MainPage.scss';
+
 import UserInfo from '../../component/UserInfo/UserInfo';
 import Chatting from '../../component/Chatting/Chatting';
-import Search from '../../component/Search/Search';
-import { Grid, Image, Card, Icon } from 'semantic-ui-react';
+import SearchBar from '../../component/SearchBar/SearchBar';
+
 import { Link } from 'react-router-dom';
+import { Posts } from '../../../api/posts';
+import { Meteor } from 'meteor/meteor';
+import { withTracker } from 'meteor/react-meteor-data';
+import { Grid, Image, Card, Icon } from 'semantic-ui-react';
 
 function MainPage({ posts, currentUser }) {
+  // const [checkUser, setCheckUser] = useState('');
+  // console.log('체크 유저', checkUser);
+
+  // console.log('현재유저', currentUser);
+  // console.log('상세 유저', currentUser && currentUser.username);
+  console.log('메인에 포스트 :', posts);
   return (
     <div className="mainPageContainer">
       <Grid divided="vertically">
-        <Grid.Row columns={3}>
+        <Grid.Row columns={3} stretched>
           <Grid.Column>
-            <Search />
+            <SearchBar />
           </Grid.Column>
           <Grid.Column>
-            <UserInfo />
+            <UserInfo check={currentUser && currentUser.username} />
           </Grid.Column>
           <Grid.Column>
             <Chatting />
@@ -70,4 +78,3 @@ export default withTracker(() => {
     currentUser: Meteor.user(),
   };
 })(MainPage);
-// NOTE  단수복수

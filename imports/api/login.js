@@ -17,6 +17,9 @@ export const Login = new Mongo.Collection('login');
 
 if (Meteor.isServer) {
   // 미티어 서버에 요청
+  Meteor.publish('users', function usersPublication() {
+    return Meteor.users.find({});
+  });
 }
 
 Meteor.methods({

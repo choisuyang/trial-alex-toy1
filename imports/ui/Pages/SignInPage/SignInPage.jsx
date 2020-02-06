@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Meteor } from 'meteor/meteor';
 import { Grid, Header, Form, Input, Segment, Button } from 'semantic-ui-react';
 import './SignInPage.scss';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter, Link, Confirm } from 'react-router-dom';
 
 function SignInPage({ history }) {
   const [loginId, setLoginId] = useState('');
@@ -86,10 +86,10 @@ function SignInPage({ history }) {
             Cancel
           </Button>
         </Link>
-
         <Button inverted color="red" type="submit" onClick={onSubmit}>
           OK
         </Button>
+        ;
       </div>
     </div>
   );

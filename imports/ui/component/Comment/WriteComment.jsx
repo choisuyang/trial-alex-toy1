@@ -37,6 +37,7 @@ function WriteComment({ comments, checkID }) {
       } else {
         console.log('댓글 작성되었습니다.');
         alert('댓글이 작성 되었습니다.');
+        setFormText('');
         // history.push('/');
       }
     });
