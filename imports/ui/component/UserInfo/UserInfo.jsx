@@ -14,7 +14,9 @@ import { Meteor } from 'meteor/meteor';
 
 import _ from 'lodash';
 
-const UserInfo = props => {
+// user info
+export default UserInfo = props => {
+  // TODO : Get currentUser from props
   const currentUser = Meteor.user();
   const isLogedIn = currentUser && !_.isEmpty(currentUser);
   const TopPart = isLogedIn ? UserTopPart : GuestTopPart;
@@ -37,7 +39,9 @@ const UserInfo = props => {
   );
 };
 
-const GuestTopPart = props => {
+// guest
+// guest top part
+const GuestTopPart = () => {
   return (
     <Header as="h2" icon>
       <Icon name="thumbs up outline" />
@@ -47,7 +51,8 @@ const GuestTopPart = props => {
   );
 };
 
-const GuestBottomPart = props => {
+// guest bottom part
+const GuestBottomPart = () => {
   return (
     <Link to="/signin">
       <Header textAlign="center" inverted color="purple">
@@ -57,6 +62,8 @@ const GuestBottomPart = props => {
   );
 };
 
+// user
+// user top part
 const UserTopPart = props => {
   const { currentUser } = props;
   return (
@@ -74,6 +81,7 @@ const UserTopPart = props => {
   );
 };
 
+// user bottom part
 const UserBottomPart = props => {
   const labelStyle = {
     display: 'flex',
@@ -85,24 +93,20 @@ const UserBottomPart = props => {
 
   const { currentUser } = props;
   return (
-    <>
-      <Segment basic textAlign="left" style={{ maxWidth: '100%' }}>
-        <Label as="a" size="big" basic style={labelStyle}>
-          <Icon name="phone square" size="large" />
-          <sapn style={{ alignSelf: 'center' }}>
-            {currentUser.profile.phoneNumber}
-          </sapn>
-        </Label>
-        <Label as="a" size="big" basic style={labelStyle}>
-          <Icon name="mail square" size="large" />
-          <span style={{ alignSelf: 'center' }}>
-            AAAAAAAAAA@nannana
-            {currentUser.emails[0].address + _.times(80, () => 'a')}
-          </span>
-        </Label>
-      </Segment>
-    </>
+    <Segment basic textAlign="left" style={{ maxWidth: '100%' }}>
+      <Label as="a" size="big" basic style={labelStyle}>
+        <Icon name="phone square" size="large" />
+        <sapn style={{ alignSelf: 'center' }}>
+          {currentUser.profile.phoneNumber}
+        </sapn>
+      </Label>
+      <Label as="a" size="big" basic style={labelStyle}>
+        <Icon name="mail square" size="large" />
+        <span style={{ alignSelf: 'center' }}>
+          AAAAAAAAAA@nannana
+          {currentUser.emails[0].address + _.times(80, () => 'a')}
+        </span>
+      </Label>
+    </Segment>
   );
 };
-
-export default UserInfo;
