@@ -20,7 +20,8 @@ Meteor.methods({
         console.log('댓글 작성', commentValue);
         check(commentValue, {
             formText: String,
-            postId: String
+            postId: String,
+            count: Number,
         })
         if (!this.userId) {
             throw new Meteor.Error('Post Insert Error');

@@ -9,7 +9,7 @@ function UserInfo({ check }) {
 
   const iAmUser = Meteor.user();
 
-  // console.log('설마 너 유저냐', iAmUser);
+  console.log('설마 너 유저냐', iAmUser);
 
   return (
     <Segment>
@@ -17,13 +17,13 @@ function UserInfo({ check }) {
         <Grid.Row>
           <Grid.Column>
             <Image
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQBqjiOjl_gzPDbUiIJwuJJHa6sx8EdjgLDy5GzB8e2nXf5JAhw"
+              // src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQBqjiOjl_gzPDbUiIJwuJJHa6sx8EdjgLDy5GzB8e2nXf5JAhw"
               size="tiny"
               circular
               centered
             />
             <Header as="h2" textAlign="center">
-              {iAmUser && iAmUser.username}
+              {iAmUser ? iAmUser.username : 'User'}
             </Header>
           </Grid.Column>
         </Grid.Row>

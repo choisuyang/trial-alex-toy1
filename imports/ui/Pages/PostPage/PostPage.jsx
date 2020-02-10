@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Form, Grid, Button, Message, Label } from 'semantic-ui-react';
+import { Form, Grid, Button } from 'semantic-ui-react';
 import { Meteor } from 'meteor/meteor';
 import { Link } from 'react-router-dom';
 
@@ -9,6 +9,8 @@ function PostPage({ history }) {
     description: '',
     textArea: '',
   });
+  const [like, setLike] = useState(false);
+  const [likeUsers, setLikeUsers] = useState('');
 
   const { title, description, textArea } = text;
 
@@ -28,12 +30,17 @@ function PostPage({ history }) {
       description,
       textArea,
     };
+    const likeConainer = {
+      like,
+      likeUsers,
+    };
 
-    Meteor.call('posts.insert', insertValue, err => {
+    Meteor.call('posts.insert', insertValue, likeConainer, err => {
       if (err) {
         console.log('포스트 작성안됨', err);
       } else {
         console.log('포스트가 작성되었습니다.');
+
         alert('포스트가 작성 되었습니다.');
         history.push('/');
       }

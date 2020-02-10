@@ -7,6 +7,11 @@ import { withRouter, Link, Confirm } from 'react-router-dom';
 function SignInPage({ history }) {
   const [loginId, setLoginId] = useState('');
   const [password, setPassword] = useState('');
+  const [open, setOpen] = useState(false);
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   // console.log('History', history);
 
@@ -14,6 +19,8 @@ function SignInPage({ history }) {
     e.preventDefault();
     // console.log('I am ID', loginId);
     // console.log('I am PWD', password);
+
+    setOpen(true);
 
     Meteor.loginWithPassword(loginId, password, err => {
       if (err) {

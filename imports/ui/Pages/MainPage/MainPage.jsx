@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import './MainPage.scss';
+import _ from 'lodash';
 
 import UserInfo from '../../component/UserInfo/UserInfo';
 import Chatting from '../../component/Chatting/Chatting';
@@ -10,14 +11,25 @@ import { Posts } from '../../../api/posts';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Grid, Image, Card, Icon } from 'semantic-ui-react';
+import { Comments } from '../../../api/comment';
 
-function MainPage({ posts, currentUser }) {
+function MainPage({ posts, currentUser, comments }) {
+  const [userCount, setUserCount] = useState(0);
   // const [checkUser, setCheckUser] = useState('');
   // console.log('체크 유저', checkUser);
 
   // console.log('현재유저', currentUser);
   // console.log('상세 유저', currentUser && currentUser.username);
-  console.log('메인에 포스트 :', posts);
+
+  // console.log('메인에 포스트 :', posts);
+  // console.log('메인에서 댓글', comments);
+
+  // const userCountFunction = _.map(comments, (state, index) => {
+  // state.commentValue.postId === _.id ? setUserCount(userCount + 1) : 0;
+
+  // console.log('스테이트값', state);
+  // });
+
   return (
     <div className="mainPageContainer">
       <Grid divided="vertically">
@@ -36,6 +48,7 @@ function MainPage({ posts, currentUser }) {
         <Card.Group itemsPerRow={4}>
           {posts.map(item => {
             const { _id, insertValue } = item;
+            console.log('ddddddddddddddddddd', insertValue);
             return (
               // 페이지 이동해야함
               // _id 값을 props 전달
@@ -59,7 +72,7 @@ function MainPage({ posts, currentUser }) {
                     <Icon name="heart" />
                     2020
                     <Icon name="comment" className="mainIcon" />
-                    0202
+                    {userCount}
                   </Card.Content>
                 </Card>
               </Link>
@@ -73,7 +86,10 @@ function MainPage({ posts, currentUser }) {
 
 export default withTracker(() => {
   Meteor.subscribe('posts');
+  Meteor.subscribe('comments');
+
   return {
+    comments: Comments.find({}).fetch(),
     posts: Posts.find({}).fetch(),
     currentUser: Meteor.user(),
   };
