@@ -15,8 +15,8 @@ const Header = props => {
   return (
     <Container>
       <Divider hidden />
-      <Menu>
-        <Menu.Item>[Alex] Toy</Menu.Item>
+      <Menu style={{ height: '60px' }}>
+        <Menu.Item name="alex">[Alex] Toy</Menu.Item>
         <LeftMenuItems />
         <Menu.Menu position="right">
           <RightMenuItems currentUser={currentUser} />
@@ -30,9 +30,9 @@ const Header = props => {
 const LeftButtons = props => {
   return (
     <>
-      <Link to="/postpage">
-        <Menu.Item>Blog Write</Menu.Item>
-      </Link>
+      {/* <Link to="/postpage"> */}
+      <Menu.Item onClick={() => {}}>Blog Write</Menu.Item>
+      {/* </Link> */}
       <Menu.Item>Favorite</Menu.Item>
     </>
   );
