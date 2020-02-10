@@ -8,6 +8,7 @@ import Header from '../../ui/component/Header/Header';
 import PostPage from '../../ui/Pages/PostPage/PostPage';
 import PostItem from '../../ui/component/PostItem/PostItem';
 import SetPostPage from '../../ui/Pages/SetPostPage/SetPostPage';
+import { Divider } from 'semantic-ui-react';
 
 // route components
 
@@ -18,6 +19,7 @@ export const renderRoutes = props => (
     <Switch>
       <div>
         <Header />
+        <Divider hidden />
 
         <div>
           <Route replace={true} exact path="/" component={App} />

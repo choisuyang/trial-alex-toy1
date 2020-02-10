@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 import { Posts } from '../../../api/posts';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
-import { Grid, Image, Card, Icon } from 'semantic-ui-react';
+import { Grid, Image, Card, Icon, Container } from 'semantic-ui-react';
 import { Comments } from '../../../api/comment';
 
 function MainPage({ posts, currentUser, comments }) {
@@ -31,7 +31,7 @@ function MainPage({ posts, currentUser, comments }) {
   // });
 
   return (
-    <div className="mainPageContainer">
+    <Container>
       <Grid divided="vertically">
         <Grid.Row columns={3} stretched>
           <Grid.Column>
@@ -48,7 +48,7 @@ function MainPage({ posts, currentUser, comments }) {
         <Card.Group itemsPerRow={4}>
           {posts.map(item => {
             const { _id, insertValue } = item;
-            console.log('ddddddddddddddddddd', insertValue);
+            // console.log('ddddddddddddddddddd', insertValue);
             return (
               // 페이지 이동해야함
               // _id 값을 props 전달
@@ -80,7 +80,7 @@ function MainPage({ posts, currentUser, comments }) {
           })}
         </Card.Group>
       </Grid>
-    </div>
+    </Container>
   );
 }
 
