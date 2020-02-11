@@ -96,7 +96,6 @@ function SignInPage({ history }) {
         <Button inverted color="red" type="submit" onClick={onSubmit}>
           OK
         </Button>
-        ;
       </div>
     </div>
   );

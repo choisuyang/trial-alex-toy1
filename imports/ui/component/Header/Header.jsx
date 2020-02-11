@@ -4,8 +4,9 @@ import { Link } from 'react-router-dom';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 
-// header bar
+// Header bar
 const Header = props => {
+  // TODO : Get currentUser from props
   const user = Meteor.user();
   const { currentUser } = props;
 
@@ -26,7 +27,7 @@ const Header = props => {
   );
 };
 
-// let buttons
+// Left buttons
 const LeftButtons = props => {
   return (
     <>
@@ -38,6 +39,7 @@ const LeftButtons = props => {
   );
 };
 
+// Sign buttons
 const SignButtons = props => {
   return (
     <>
@@ -55,6 +57,7 @@ const SignButtons = props => {
   );
 };
 
+// User menu
 const UserMenu = props => {
   const { currentUser } = props;
   return (
@@ -70,6 +73,7 @@ const UserMenu = props => {
   );
 };
 
+// Empty
 const Empty = props => {
   return <></>;
 };

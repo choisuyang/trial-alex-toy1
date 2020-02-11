@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import _ from 'lodash';
 import {
   Grid,
@@ -9,11 +9,13 @@ import {
   Image,
   GridColumn,
   Dropdown,
+  Input,
 } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import './SearchItem.scss';
 
 const SearchBar = props => {
+  const listRef = useRef();
   const { users } = props;
   const testUsers = [];
   _.times(80, () => {
@@ -21,6 +23,7 @@ const SearchBar = props => {
       testUsers.push(u);
     });
   });
+  const [listHeight, setListHeight] = useState(0);
   const userData = _.map(users, (state, index) => ({
     key: state._id,
     text: state.username,
@@ -40,32 +43,86 @@ const SearchBar = props => {
     setSearchQuery(searchQuery);
   };
 
+  useEffect(() => {
+    console.log('========================>1111', listRef);
+    console.log(
+      '---------------------------->22222',
+      listRef.current.getBoundingClientRect().height,
+    );
+    console.log('---------------------------------->33333', listHeight);
+    // TODO : Delete setTimeout
+    setTimeout(() => {
+      setListHeight(listRef.current.clientHeight);
+    }, 500);
+  }, [listHeight]);
+
   return (
-    <Segment>
-      <div>Search</div>
+    <Segment
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        // alignItems: 'stretch',
+      }}
+    >
       <div>
-        List Container
-        <div className="searchItem">
-          {_.map(testUsers, (item, index) => (
-            <List animated verticalAlign="middle" key={index}>
-              <List.Item>
-                <Image
-                  avatar
-                  src="https://react.semantic-ui.com/images/avatar/small/helen.jpg"
-                />
-                <List.Content>
-                  <List.Header>
-                    {searchQuery === item.username
-                      ? searchQuery
-                      : item.username}
-                  </List.Header>
-                </List.Content>
-              </List.Item>
-            </List>
-          ))}
+        Search
+        <Input />
+      </div>
+
+      <div
+        ref={listRef}
+        style={{
+          // display: 'flex',
+          // flexDirection: 'column',
+          // flexGrow: 1,
+          alignSelf: 'stretch',
+          backgroundColor: 'red',
+          height: '100%',
+        }}
+      >
+        <div
+          style={{
+            height: listHeight,
+            backgroundColor: 'grey',
+            overflow: 'scroll',
+          }}
+        >
+          <UserList users={testUsers} />
         </div>
+
+        {/* <div style={{ display: 'flex', height: '100%' }}>
+          <div style={{ width: '100%', height: '100%', overflow: 'scroll' }}>
+            <UserList users={testUsers} />
+          </div>
+        </div>
+
+        <div style={{ backgroundColor: 'green', height: '100%' }}>hi</div> */}
       </div>
     </Segment>
+  );
+};
+
+const UserList = props => {
+  const { users } = props;
+  return (
+    <>
+      {_.map(users, (item, index) => (
+        <List animated verticalAlign="middle" key={index}>
+          <List.Item>
+            <Image
+              avatar
+              src="https://react.semantic-ui.com/images/avatar/small/helen.jpg"
+            />
+            <List.Content>
+              <List.Header>
+                {item.username}
+                {/* {searchQuery === item.username ? searchQuery : item.username} */}
+              </List.Header>
+            </List.Content>
+          </List.Item>
+        </List>
+      ))}
+    </>
   );
 };
 
