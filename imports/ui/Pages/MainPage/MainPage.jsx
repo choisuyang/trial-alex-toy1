@@ -4,7 +4,7 @@ import _ from 'lodash';
 
 import UserInfo from '../../component/UserInfo/UserInfo';
 import Chatting from '../../component/Chatting/Chatting';
-import SearchBar from '../../component/SearchBar/SearchBar';
+import UserAccessInfo from '../../component/UserAccessInfo/UserAccessInfo';
 
 import { Link } from 'react-router-dom';
 import { Posts } from '../../../api/posts';
@@ -35,7 +35,7 @@ function MainPage({ posts, currentUser, comments }) {
       <Grid divided="vertically">
         <Grid.Row columns={3} stretched>
           <Grid.Column>
-            <SearchBar />
+            <UserAccessInfo />
           </Grid.Column>
           <Grid.Column>
             <UserInfo check={currentUser && currentUser.username} />
