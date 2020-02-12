@@ -3,7 +3,7 @@ import './MainPage.scss';
 import _ from 'lodash';
 
 import UserInfo from '../../component/UserInfo/UserInfo';
-import Chatting from '../../component/Chatting/Chatting';
+import MessageRoom from '../../component/Chatting/MessageRoom';
 import UserAccessInfo from '../../component/UserAccessInfo/UserAccessInfo';
 
 import { Link } from 'react-router-dom';
@@ -15,20 +15,6 @@ import { Comments } from '../../../api/comment';
 
 function MainPage({ posts, currentUser, comments }) {
   const [userCount, setUserCount] = useState(0);
-  // const [checkUser, setCheckUser] = useState('');
-  // console.log('체크 유저', checkUser);
-
-  // console.log('현재유저', currentUser);
-  // console.log('상세 유저', currentUser && currentUser.username);
-
-  // console.log('메인에 포스트 :', posts);
-  // console.log('메인에서 댓글', comments);
-
-  // const userCountFunction = _.map(comments, (state, index) => {
-  // state.commentValue.postId === _.id ? setUserCount(userCount + 1) : 0;
-
-  // console.log('스테이트값', state);
-  // });
 
   return (
     <Container>
@@ -41,7 +27,7 @@ function MainPage({ posts, currentUser, comments }) {
             <UserInfo check={currentUser && currentUser.username} />
           </Grid.Column>
           <Grid.Column>
-            <Chatting />
+            <MessageRoom />
           </Grid.Column>
         </Grid.Row>
 
