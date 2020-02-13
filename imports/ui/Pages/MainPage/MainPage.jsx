@@ -3,19 +3,18 @@ import './MainPage.scss';
 import _ from 'lodash';
 
 import UserInfo from '../../component/UserInfo/UserInfo';
-import MessageRoom from '../../component/Chatting/MessageRoom';
+import MessageRoom from '../../component/MessageRoom/MessageRoom.coffee';
 import UserAccessInfo from '../../component/UserAccessInfo/UserAccessInfo';
 
 import { Link } from 'react-router-dom';
 import { Posts } from '../../../api/posts';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
-import { Grid, Image, Card, Icon, Container } from 'semantic-ui-react';
+import { Grid, Image, Card, Icon, Container, Message } from 'semantic-ui-react';
 import { Comments } from '../../../api/comment';
 
 function MainPage({ posts, currentUser, comments }) {
   const [userCount, setUserCount] = useState(0);
-
   return (
     <Container>
       <Grid divided="vertically">
