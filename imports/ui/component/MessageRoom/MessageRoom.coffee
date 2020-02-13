@@ -1,4 +1,4 @@
-import React, {useState,useEffect,useRef} from 'react'
+import React from 'react'
 import {
   Segment,
   Input,
@@ -15,6 +15,8 @@ import { Messages } from '../../../api/message'
 import _ from 'lodash'
 import './MessageRoom.scss' 
 
+
+# Message Room
 MessageRoom = (props) =>
   { messages } = props
 
@@ -23,6 +25,8 @@ MessageRoom = (props) =>
     <MessageInput />
   </Segment>
 
+
+# Message Input
 MessageInput = (props) =>
   <div>
     <Input
@@ -35,6 +39,8 @@ MessageInput = (props) =>
     </Button>
   </div>
 
+
+# Massage List
 class MessageList extends React.Component 
   constructor: (props) ->
     super props
@@ -50,16 +56,20 @@ class MessageList extends React.Component
 
   render: () =>
     { messages } = @props
-    <div ref={ @listRef }>
-    MessageList
-    {_.map messages, (message, index) => <MessageListItem message={ message } key={index} />}
+    { listHeight } = @state
+    <div ref={ @listRef } style={{ height: '100%' }}>
+      <div style={{height: listHeight, overflowY: 'scroll'}}>
+        {_.map messages, (message, index) => <MessageListItem message={ message } key={index} />}
+      </div>
     </div>
 
+
+# Message List Item
 MessageListItem = (props) =>
   { message, key } = props
   { owner, username, messageContainer, } = message
   isRight = Meteor.userId() is owner
-  console.log("Owner: [#{owner}] vs currentUserId : [#{Meteor.userId()}] ----> ?", isRight)
+  # console.log("Owner: [#{owner}] vs currentUserId : [#{Meteor.userId()}] ----> ?", isRight)
 
   <div className="chatRight" key={key}>
     <Label pointing="right" className="chatLabel">
@@ -76,6 +86,8 @@ MessageListItem = (props) =>
     />
   </div>
 
+
+# export default
 export default withTracker(() => 
   Meteor.subscribe 'messages'
   {

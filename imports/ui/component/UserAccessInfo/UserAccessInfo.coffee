@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React from 'react'
 import _ from 'lodash'
 import {
 	Grid,
@@ -15,10 +15,11 @@ import {
 import { withTracker } from 'meteor/react-meteor-data'
 
 
+# User Acces Info
 UserAccessInfo = (props) =>
 	{ currentUser = {}, users = [] } = props
 	testUsers = []
-	_.times 80, () => _.each users, (u) => testUsers.push u
+	_.times 8, () => _.each users, (u) => testUsers.push u
 
 	<Segment style={{display: 'flex', flexDirection: 'column'}}>
 		<SearchInput />
@@ -27,10 +28,12 @@ UserAccessInfo = (props) =>
 	</Segment>
 
 
+# Search Input
 SearchInput = (props) =>
 	<Input icon="search" placeholder="Search..." />
 
 
+# User List
 class UserList extends React.Component
 	constructor: (props) ->
 		super props
@@ -49,7 +52,6 @@ class UserList extends React.Component
 		{ users, } = @props
 		{ listHeight, } = @state
 		<div ref={@listRef} style={{ height: '100%' }}>
-			WTF!
 			<div style={{height: listHeight, overflowY: 'scroll'}}>
 				<List animated verticalAlign="middle">
 					{_.map users, (user, index) =>
@@ -59,6 +61,7 @@ class UserList extends React.Component
 		</div>
 
 
+# User List Item
 UserListItem = (props) =>
 	{ user, key } = props;
 	<List.Item key={key}>
@@ -72,9 +75,7 @@ UserListItem = (props) =>
   </List.Item>
 
 
-
-
-
+# export default
 export default withTracker((props) =>
 	Meteor.subscribe('users')	
 	{

@@ -103,7 +103,6 @@ const UserBottomPart = props => {
       <Label as="a" size="big" basic style={labelStyle}>
         <Icon name="mail square" size="large" />
         <span style={{ alignSelf: 'center' }}>
-          AAAAAAAAAA@nannana
           {currentUser.emails[0].address + _.times(80, () => 'a')}
         </span>
       </Label>
